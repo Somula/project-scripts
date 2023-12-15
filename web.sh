@@ -57,7 +57,7 @@ unzip /tmp/web.zip &>> $LOGFILE
 
 VERIFY $? "Unzipping the application"
 
-cp /home/centos/project-scripts/roboshop.conf /usr/nginx/default.d/roboshop.conf &>> $LOGFILE
+cp /home/centos/project-scripts/roboshop.conf /etc/nginx/default.d/roboshop.conf &>> $LOGFILE
 
 VERIFY $? "Creating the roboshop.conf file"
 
