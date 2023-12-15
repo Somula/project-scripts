@@ -46,11 +46,11 @@ else
     echo -e "$G Already logged as a user.$N" &>> $LOGFILE
 fi
 
-mkdir /app &>> $LOGFILE
+mkdir -p /app &>> $LOGFILE
 
 VERIFY $? "Creating a app directory"
 
-cd -p /app &>> $LOGFILE
+cd /app &>> $LOGFILE
 
 VERIFY $? "Opening the app directory"
 
@@ -96,5 +96,5 @@ VERIFY $? "Inserting the data into the database"
 
 systemctl restart user &>> $LOGFILE
 
-VERIFY $? "Restartinting the user service"
+VERIFY $? "Restarting the user service"
 
