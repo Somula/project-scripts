@@ -19,47 +19,49 @@ VERIFY(){
     else
         echo -e "$2 is $G Success.$N"
     fi
-
 }
-if [ $? -ne 0 ] &>> $LOGOFILE
+
+if [ $? -ne 0 ] &>> $LOGFILE
 then 
     echo -e "$R Please logging as root user.$N"
+    sudo su &>> $LOGFILE
+    VERIFY $? "Succesfully logged as root user."
 else
     echo -e "$G Already your a root user. $N"
 fi
 
-dnf install nginx -y &>> $LOGOFILE
+dnf install nginx -y &>> $LOGFILE
 
 VERIFY $? "Installing the nginx"
 
-systemctl enable nginx &>> $LOGOFILE
+systemctl enable nginx &>> $LOGFILE
 
 VERIFY $? "Enabling the nginx"
 
-systemctl start nginx &>> $LOGOFILE
+systemctl start nginx &>> $LOGFILE
 
 VERIFY $? "Starting the nginx"
 
-rm -rf /usr/share/nginx/html/* &>> $LOGOFILE
+rm -rf /usr/share/nginx/html/* &>> $LOGFILE
 
 VERIFY $? "Removing the default html file"
 
-cd /usr/share/nginx/html &>> $LOGOFILE
+cd /usr/share/nginx/html &>> $LOGFILE
 
 VERIFY $? "Opening the /usr/share/nginx/html"
 
-curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip &>> $LOGOFILE
+curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip &>> $LOGFILE
 
 VERIFY $? "Downloading the application"
 
-unzip /tmp/web.zip &>> $LOGOFILE
+unzip /tmp/web.zip &>> $LOGFILE
 
 VERIFY $? "Unzipping the application"
 
-cp /home/centos/project-scripts/roboshop.conf /usr/nginx/default.d/roboshop.conf &>> $LOGOFILE
+cp /home/centos/project-scripts/roboshop.conf /usr/nginx/default.d/roboshop.conf &>> $LOGFILE
 
 VERIFY $? "Creating the roboshop.conf file"
 
-systemctl restart nginx &>> $LOGOFILE
+systemctl restart nginx &>> $LOGFILE
 
 VERIFY $? "Restarting the application nginx"
