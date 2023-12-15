@@ -87,7 +87,7 @@ systemctl start catalogue  &>> $LOGFILE
 
 VERIFY $? "Starting the catalogue.service"
 
-cp /home/centos/project-scripts/mongo.repo /etc/mongo.repo  &>> $LOGFILE
+cp /home/centos/project-scripts/mongo.repo /etc/yum.repos.d/mongo.repo  &>> $LOGFILE
 
 VERIFY $? "Copying the mongo.repo file into configuration directory"
 
