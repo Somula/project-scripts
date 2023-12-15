@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ID=$(id -u)
-$R="\e[31m"
-$G="\e[32m"
+R="\e[31m"
+G="\e[32m"
 
 TIMESTAMP=$(date +%F-%H-%M-%S)
 LOGFILE="/tmp/$0-$TIMESTAMP"
