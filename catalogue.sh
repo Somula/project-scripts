@@ -15,6 +15,7 @@ VERIFY(){
     if [ $1 -ne 0 ]
     then
         echo -e "$2 is $R Failed.$N"
+        exit 1
     else
         echo -e "$2 is $G Success.$N"
     fi
@@ -23,6 +24,7 @@ VERIFY(){
 if [ $ID -ne 0 ]
 then
     echo -e "$R Please log in as root user. $N"
+    exit 1
 else
     echo -e "$G Successfully logged in as root user. $N"
 fi
