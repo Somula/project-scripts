@@ -7,7 +7,7 @@ Y="\e[33m"
 N="\e[0m"
 
 TIMESTAMP=$(date "+%F-%H-%M-%S")
-LOGFILE="/tmp/$0-TIMESTAMP.log"
+LOGFILE="/tmp/$0-$TIMESTAMP.log"
 
 echo "Scripting started on $TIMESTAMP"
 
@@ -47,7 +47,7 @@ sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf &>> $LOGFILE
 
 VERIFY $? "In Configuration giving all permissions"
 
-systemctl start mongod &>> $LOGFILE
+systemctl restart mongod &>> $LOGFILE
 
-VERIFY $? "Starting the mongoDB-server"
+VERIFY $? "Restarting the mongoDB-server"
 
