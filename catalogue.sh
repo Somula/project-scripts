@@ -22,9 +22,9 @@ VERIFY(){
 
 if [ $ID -ne 0 ]
 then
-    echo "$R Please log in as root user. $N"
+    echo -e "$R Please log in as root user. $N"
 else
-    echo "$G Successfully logged in as root user. $N"
+    echo -e "$G Successfully logged in as root user. $N"
 fi
 
 dnf module disable nodejs -y
