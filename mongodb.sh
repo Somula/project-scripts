@@ -43,7 +43,7 @@ systemctl start mongod &>> $LOGFILE
 
 VERIFY $? "Starting the mongoDB-server"
 
-sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongo.conf &>> $LOGFILE
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf &>> $LOGFILE
 
 VERIFY $? "In Configuration giving all permissions"
 
