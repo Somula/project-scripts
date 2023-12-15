@@ -29,71 +29,77 @@ else
     echo -e "$G Successfully logged in as root user. $N"
 fi
 
-dnf module disable nodejs -y
+dnf module disable nodejs -y &>> $LOGFILE
 
 VERIFY $? "Nodejs is disabled"
 
-dnf module enable nodejs:18 -y
+dnf module enable nodejs:18 -y &>> $LOGFILE
 
 VERIFY $? "Nodejs is enabled"
 
-dnf install nodejs -y
+dnf install nodejs -y &>> $LOGFILE
 
 VERIFY $? "Installing the nodejs is"
 
-useradd roboshop
+id roboshop  &>> $LOGFILE
+if [ $? -ne 0 ]
+then
+    useradd roboshop  &>> $LOGFILE
+    VERIFY $? "Adding the user"
+else
+    echo "Successfully already created the user"
+fi
 
-VERIFY $? "Adding the user"
 
-mkdir /app
+mkdir -p /app  &>> $LOGFILE
 
 VERIFY $? "Creating the directory"
 
-cd /app
+cd /app  &>> $LOGFILE
 
 VERIFY $? "going into the directory"
 
-curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip
+curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip  &>> $LOGFILE
 
 VERIFY $? "downloading the application"
 
-unzip /tmp/catalogue.zip
+unzip -o /tmp/catalogue.zip  &>> $LOGFILE
 
 VERIFY $? "Unzipping the zip file"
 
-npm install
+npm install  &>> $LOGFILE
 
 VERIFY $? "Packages installing"
 
-cp /home/centos/project-scripts/catalogue.service /etc/systemd/system/catalogue.service
+cp /home/centos/project-scripts/catalogue.service /etc/systemd/system/catalogue.service  &>> $LOGFILE
 
 VERIFY $? "Creating the catalogue.service"
 
-systemctl daemon-reload
+systemctl daemon-reload  &>> $LOGFILE
 
 VERIFY $? "Loading the catalogue.service"
 
-systemctl enable catalogue
+systemctl enable catalogue  &>> $LOGFILE
 
 VERIFY $? "Enabling the catalogue.service"
 
-systemctl start catalogue
+systemctl start catalogue  &>> $LOGFILE
 
 VERIFY $? "Starting the catalogue.service"
 
-cp /home/centos/project-scripts/mongo.repo /etc/mongo.repo
+cp /home/centos/project-scripts/mongo.repo /etc/mongo.repo  &>> $LOGFILE
 
 VERIFY $? "Copying the mongo.repo file into configuration directory"
 
-dnf install mongodb-org-shell -y
+dnf install mongodb-org-shell -y  &>> $LOGFILE
 
 VERIFY $? "Installing the mongodb "
 
-mongo --host mongodb.lingaaws.tech </app/schema/catalogue.js
+mongo --host mongodb.lingaaws.tech </app/schema/catalogue.js  &>> $LOGFILE
 
 VERIFY $? "Inserting the catalogue.js data into mongodb database"
 
-systemctl restart catalogue
+systemctl restart catalogue  &>> $LOGFILE
 
 VERIFY $? "Restarting the catalogue.service"
 
