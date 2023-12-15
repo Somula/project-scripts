@@ -9,6 +9,17 @@ N="\e[0m"
 TIMESTAMP=$(date "+%F-%H-%M-%S")
 LOGFILE="/tmp/$0-TIMESTAMP.log"
 
+echo "Scripting started on $TIMESTAMP"
+
+VERIFY(){
+    if [ $1 -ne 0 ]
+    then
+        echo -e "$2 is $R Failed. $N"
+    else
+        echo -e "$2 is $G Success. $N"
+    fi
+}
+
 if [ $ID -ne 0 ]
 then
     echo -e " $R Please log as a root user. $N"
