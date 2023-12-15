@@ -11,7 +11,6 @@ LOGFILE="/tmp/$0-$TIMESTAMP"
 if [ $ID -ne 0 ] &>> LOGFILE
 then
     echo -e "$R Please login as a root user.$N"
-    sudo su  &>> $LOGFILE
 else
     echo -e "$G Successfully login as root user.$N"
 fi
