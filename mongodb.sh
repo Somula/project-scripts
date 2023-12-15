@@ -27,27 +27,27 @@ else
     echo -e " $G Successfully logged as a root user. $N"
 fi
 
-cp /home/centos/mongo.repo /etc/yum.repos.d/mongo.repo
+cp /home/centos/project-scripts/mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
 
 VERIFY $? "Coping the mongoDB repos"
 
-dnf install mongodb-org -y
+dnf install mongodb-org -y &>> $LOGFILE
 
 VERIFY $? "Installing the mongoDB"
 
-systemctl enable mongod
+systemctl enable mongod &>> $LOGFILE
 
 VERIFY $? "Enabling the mongoDB-server"
 
-systemctl start mongod
+systemctl start mongod &>> $LOGFILE
 
 VERIFY $? "Starting the mongoDB-server"
 
-sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongo.conf
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongo.conf &>> $LOGFILE
 
 VERIFY $? "In Configuration giving all permissions"
 
-systemctl start mongod
+systemctl start mongod &>> $LOGFILE
 
 VERIFY $? "Starting the mongoDB-server"
 
