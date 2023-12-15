@@ -26,7 +26,7 @@ VERIFY(){
     fi
 }
 
-curl -o https://rpms.remirepo.net/enterprise/remi-release-8.rpm &>> LOGFILE
+dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm &>> LOGFILE
 
 VERIFY $? "Installing the version"
 
