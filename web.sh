@@ -24,8 +24,6 @@ VERIFY(){
 if [ $? -ne 0 ] &>> $LOGOFILE
 then 
     echo -e "$R Please logging as root user.$N"
-    sudo su &>> $LOGOFILE
-    VERIFY $? "Logging as root user"
 else
     echo -e "$G Already your a root user. $N"
 fi
