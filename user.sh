@@ -20,7 +20,7 @@ VERIFY(){
 if [ $ID -ne 0  ] &>> $LOGFILE
 then
     echo -e "$R Please logging as a root user.$N"
-    sudo su  &>> $LOGFILE
+    
 else
     echo -e "$G Successfully logging as a root user.$N"
 fi
