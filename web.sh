@@ -8,7 +8,7 @@ N="\e[0m"
 
 TIMESTAMP=$(date +%F-%H-%M-%S)
 
-LOGFILE="/tmp/$0-$TIMESTAMP
+LOGFILE="/tmp/$0-$TIMESTAMP"
 
 echo "Script started at $TIMESTAMP"
 
@@ -27,7 +27,7 @@ then
     sudo su &>> $LOGOFILE
     VERIFY $? "Logging as root user"
 else
-    echo -e "$G Already your a root user"
+    echo -e "$G Already your a root user. $N"
 fi
 
 dnf install nginx -y &>> $LOGOFILE
