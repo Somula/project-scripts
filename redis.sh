@@ -12,7 +12,6 @@ if [ $ID -ne 0 ] &>> LOGFILE
 then
     echo -e "$R Please login as a root user.$N"
     sudo su  &>> $LOGFILE
-    VERIFY $? "$G Successfully login as root user.$N"
 else
     echo -e "$G Successfully login as root user.$N"
 fi
