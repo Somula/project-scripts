@@ -52,7 +52,7 @@ curl -o /tmp/shipping.zip https://roboshop-builds.s3.amazonaws.com/shipping.zip 
 
 VERIFY $? "Downloading the shipping service"
 
-unzip /tmp/shipping.zip &>> $LOGFILE
+unzip -o /tmp/shipping.zip &>> $LOGFILE
 
 VERIFY $? "Unzipping the shipping service"
 
