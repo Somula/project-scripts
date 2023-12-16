@@ -19,7 +19,7 @@ fi
 VERIFY(){
     if [ $1 -ne 0 ] &>> LOGFILE
     then 
-        echo -e "$2 is $G Failed$N."
+        echo -e "$2 is $R Failed$N."
     else
         echo -e "$2 is $G Success$N."
     fi
@@ -56,7 +56,7 @@ unzip /tmp/shipping.zip &>> LOGFILE
 
 VERIFY $? "Unzipping the shipping service"
 
-mvn clean packages &>> LOGFILE
+mvn clean package &>> LOGFILE
 
 VERIFY $? "Clean the packages of the service"
 
@@ -84,7 +84,7 @@ dnf install mysql -y &>> LOGFILE
 
 VERIFY $? "Installing of the service"
 
-mysql -h @mysql.lingaaws.tech -uroot -pRoboShop@1 </app/schema/shipping.sql &>> LOGFILE
+mysql -h mysql.lingaaws.tech -uroot -pRoboShop@1 </app/schema/shipping.sql &>> LOGFILE
 
 VERIFY $? "Inserting the data into service"
 
