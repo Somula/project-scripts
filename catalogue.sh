@@ -99,9 +99,7 @@ mongo --host mongodb.lingaaws.tech </app/schema/catalogue.js  &>> $LOGFILE
 
 VERIFY $? "Inserting the catalogue.js data into mongodb database"
 
-systemctl restart catalogue  &>> $LOGFILE
 
-VERIFY $? "Restarting the catalogue.service"
 
 
 
