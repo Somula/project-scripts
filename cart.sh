@@ -83,7 +83,7 @@ systemctl enable cart  &>> $LOGFILE
 
 VERIFY $? "Enabling the cart.service"
 
-systemctl start cart  &>> $LOGFILE
+systemctl restart cart  &>> $LOGFILE
 
 VERIFY $? "Starting the cart.service"
 
