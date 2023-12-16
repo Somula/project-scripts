@@ -94,7 +94,5 @@ mongo --host mongodb.lingaaws.tech </app/schema/user.js &>> $LOGFILE
 
 VERIFY $? "Inserting the data into the database"
 
-systemctl restart user &>> $LOGFILE
 
-VERIFY $? "Restarting the user service"
 
