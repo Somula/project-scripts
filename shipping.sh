@@ -48,7 +48,7 @@ cd /app &>> $LOGFILE
 
 VERIFY $? "Going into the app directory"
 
-curl -L -o /tmp/shipping.zip https://roboshop-builds.s3.amazonaws.com/shipping.zip &>> $LOGFILE
+curl -o /tmp/shipping.zip https://roboshop-builds.s3.amazonaws.com/shipping.zip &>> $LOGFILE
 
 VERIFY $? "Downloading the shipping service"
 
