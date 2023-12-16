@@ -12,19 +12,21 @@ LOGFILE="/tmp/$0-$TIMESTAMP.log"
 
 echo "Script started at $TIMESTAMP."
 
-if [ $ID -e 0 ] &>> LOGFILE
+if [ $ID -ne 0 ] &>> LOGFILE
 then 
-    echo -e "$G Succesfully your logged in as a root user.$N"
-else
     echo -e "$R Please login as a root user.$N"
+    exit 1
+else
+    echo -e "$G Succesfully your logged in as a root user.$N"
 fi
 
 VERIFY(){
-    if [ $1 -e 0 ]  &>> LOGFILE
+    if [ $1 -ne 0 ]  &>> LOGFILE
     then
-        echo -e "$2 is $G Success$N."
-    else
         echo -e "$2 is $R Failed$N."
+        exit 1
+    else
+        echo -e "$2 is $G Success$N."
     fi
 }
 dnf module disable mysql -y &>> LOGFILE

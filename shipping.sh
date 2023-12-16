@@ -9,85 +9,86 @@ N="\e[0m"
 TIMESTAMP=$(date +%F-%H-%M-%S)
 LOGFILE="/tmp/$0-$TIMESTAMP.log"
 
-id [ $ID -e 0 ]
+if [ $ID -ne 0 ] &>> LOGFILE
 then
-    echo -e "$G Succesfully login as root user.$N"
-else
     echo -e "$R Please login as root user.$N"
+else
+    echo -e "$G Succesfully login as root user.$N"
 fi
 
 VERIFY(){
-    if [ $1 -e 0 ]
+    if [ $1 -ne 0 ] &>> LOGFILE
     then 
-        echo -e "$2 is $G Success$N."
-    else
         echo -e "$2 is $G Failed$N."
+    else
+        echo -e "$2 is $G Success$N."
     fi
 
 }
 
-dnf install maven -y
+dnf install maven -y &>> LOGFILE
 
 VERIFY $? "Installing the maven"
 
-id roboshop
-if [ $? -e 0 ]
+id roboshop &>> LOGFILE
+if [ $? -ne 0 ] &>> LOGFILE
 then
-    echo "Your are already a roboshop user"
-else
-    useradd roboshop
+    useradd roboshop &>> LOGFILE
     VERIFY $? "Adding the roboshop user"
+    
+else
+    echo "Your are already a roboshop user"
 fi
 
-mkdir -p /app
+mkdir -p /app &>> LOGFILE
 
 VERIFY $? "Creating the app directory"
 
-cd /app
+cd /app &>> LOGFILE
 
 VERIFY $? "Going into the app directory"
 
-curl -L -o /tmp/shipping.zip https://roboshop-builds.s3.amazonaws.com/shipping.zip
+curl -L -o /tmp/shipping.zip https://roboshop-builds.s3.amazonaws.com/shipping.zip &>> LOGFILE
 
 VERIFY $? "Downloading the shipping service"
 
-unzip /tmp/shipping.zip
+unzip /tmp/shipping.zip &>> LOGFILE
 
 VERIFY $? "Unzipping the shipping service"
 
-mvn clean packages
+mvn clean packages &>> LOGFILE
 
 VERIFY $? "Clean the packages of the service"
 
-mv target/shipping-1.0.jar shipping.jar
+mv target/shipping-1.0.jar shipping.jar &>> LOGFILE
 
 VERIFY $? "Renaming the file of target/shipping-1.0.jar shipping.jar"
 
-cp /home/centos/project-scripts/shipping.service /etc/systemd/system/shipping.service
+cp /home/centos/project-scripts/shipping.service /etc/systemd/system/shipping.service &>> LOGFILE
 
 VERIFY $? "Importing the shipping.service to /etc/systemd/system/shipping.service"
 
-systemctl daemon-reload
+systemctl daemon-reload &>> LOGFILE
 
 VERIFY $? "Reloading of the service"
 
-systemctl enable shipping
+systemctl enable shipping &>> LOGFILE
 
 VERIFY $? "Enabling of the service"
 
-systemctl start shipping
+systemctl start shipping &>> LOGFILE
 
 VERIFY $? "Starting of the service"
 
-dnf install mysql -y
+dnf install mysql -y &>> LOGFILE
 
 VERIFY $? "Installing of the service"
 
-mysql -h @mysql.lingaaws.tech -uroot -pRoboShop@1 </app/schema/shipping.sql
+mysql -h @mysql.lingaaws.tech -uroot -pRoboShop@1 </app/schema/shipping.sql &>> LOGFILE
 
 VERIFY $? "Inserting the data into service"
 
-systemctl restart shipping
+systemctl restart shipping &>> LOGFILE
 
 VERIFY $? "Restarting of the service"
 
