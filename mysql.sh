@@ -53,6 +53,4 @@ mysql_secure_installation --set-root-pass RoboShop@1 &>> $LOGFILE
 
 VERIFY $? "Setting the user name and password"
 
-mysql -uroot -pRoboShop@1 &>> $LOGFILE
 
-VERIFY $? "Login as username and password"
