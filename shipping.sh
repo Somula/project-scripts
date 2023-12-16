@@ -84,7 +84,7 @@ dnf install mysql -y &>> $LOGFILE
 
 VERIFY $? "Installing of the service"
 
-mysql -h mysql.lingaaws.tech -uroot -pRoboShop@1 </app/schema/shipping.sql &>> $LOGFILE
+mysql -h mysql.lingaaws.tech -uroot -pRoboShop@1 < /app/schema/shipping.sql &>> $LOGFILE
 
 VERIFY $? "Inserting the data into service"
 
