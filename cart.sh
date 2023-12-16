@@ -7,7 +7,7 @@ N="\e[0m"
 
 TIMESTAMP=$(date +%F-%H-%M-%S)
 
-LOGFILE="/tmp/$0-$TIMESTAMP"
+LOGFILE="/tmp/$0-$TIMESTAMP.log"
 
 echo "Scripting started at $TIMESTAMP"
 
