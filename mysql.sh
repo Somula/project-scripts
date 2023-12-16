@@ -12,7 +12,7 @@ LOGFILE="/tmp/$0-$TIMESTAMP.log"
 
 echo "Script started at $TIMESTAMP."
 
-if [ $ID -ne 0 ] &>> LOGFILE
+if [ $ID -ne 0 ] &>> $LOGFILE
 then 
     echo -e "$R Please login as a root user.$N"
     exit 1
@@ -21,7 +21,7 @@ else
 fi
 
 VERIFY(){
-    if [ $1 -ne 0 ]  &>> LOGFILE
+    if [ $1 -ne 0 ]  &>> $LOGFILE
     then
         echo -e "$2 is $R Failed$N."
         exit 1
@@ -29,30 +29,30 @@ VERIFY(){
         echo -e "$2 is $G Success$N."
     fi
 }
-dnf module disable mysql -y &>> LOGFILE
+dnf module disable mysql -y &>> $LOGFILE
 
 VERIFY $? "Disabling mysql"
 
-cp /home/centos/project-scripts/mysql.repo /etc/yum.repos.d/mysql.repo &>> LOGFILE
+cp /home/centos/project-scripts/mysql.repo /etc/yum.repos.d/mysql.repo &>> $LOGFILE
 
 VERIFY $? "Copying the repository file"
 
-dnf install mysql-community-server -y &>> LOGFILE
+dnf install mysql-community-server -y &>> $LOGFILE
 
 VERIFY $? "Installing the mysql"
 
-systemctl enable mysqld &>> LOGFILE
+systemctl enable mysqld &>> $LOGFILE
 
 VERIFY $? "Enabling mysql"
 
-systemctl start mysqld &>> LOGFILE
+systemctl start mysqld &>> $LOGFILE
 
 VERIFY $? "Starting mysql"
 
-mysql_secure_installation --set-root-pass RoboShop@1 &>> LOGFILE
+mysql_secure_installation --set-root-pass RoboShop@1 &>> $LOGFILE
 
 VERIFY $? "Setting the user name and password"
 
-mysql -uroot -pRoboShop@1 &>> LOGFILE
+mysql -uroot -pRoboShop@1 &>> $LOGFILE
 
 VERIFY $? "Login as username and password"
