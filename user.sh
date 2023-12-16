@@ -58,7 +58,7 @@ curl -L -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip &>> $
 
 VERIFY $? "Downloading the file"
 
-unzip /tmp/user.zip &>> $LOGFILE
+unzip -o /tmp/user.zip &>> $LOGFILE
 
 VERIFY $? "Unzipping the file"
 
