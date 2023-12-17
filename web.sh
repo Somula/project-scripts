@@ -8,7 +8,7 @@ N="\e[0m"
 
 TIMESTAMP=$(date +%F-%H-%M-%S)
 
-LOGFILE="/tmp/$0-$TIMESTAMP"
+LOGFILE="/tmp/$0-$TIMESTAMP.log"
 
 echo "Script started at $TIMESTAMP"
 
@@ -53,7 +53,7 @@ curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip &>> $LOGFI
 
 VERIFY $? "Downloading the application"
 
-unzip /tmp/web.zip &>> $LOGFILE
+unzip -o /tmp/web.zip &>> $LOGFILE
 
 VERIFY $? "Unzipping the application"
 
