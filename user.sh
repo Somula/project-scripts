@@ -38,10 +38,10 @@ dnf install nodejs -y  &>> $LOGFILE
 
 VERIFY $? "Installing nodejs"
 
-id roboshop &>> $LOGFILE
+id roboshop
 if [ $? -ne 0 ]
 then
-    useradd roboshop  &>> $LOGFILE
+    useradd roboshop
     VERIFY $? "Adding the user"
 else
     echo -e "$G Already logged as a user.$N" &>> $LOGFILE
@@ -95,9 +95,7 @@ mongo --host mongodb.lingaaws.tech </app/schema/user.js &>> $LOGFILE
 
 VERIFY $? "Inserting the data into the database"
 
-systemctl restart user &>> $LOGFILE
 
-VERIFY $? "Restarting the user"
 
 
 
