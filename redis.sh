@@ -38,7 +38,7 @@ dnf install redis -y &>> LOGFILE
 
 VERIFY $? "Installing the redis"
 
-sed -i 's/127.0.0.1/0.0.0../g' /etc/redis.conf &>> LOGFILE
+sed -i "s/127.0.0.1/0.0.0.0/g" /etc/redis.conf &>> LOGFILE
 
 VERIFY $? "Allowing all user to access"
 
