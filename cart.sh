@@ -59,7 +59,7 @@ cd /app  &>> $LOGFILE
 
 VERIFY $? "going into the directory"
 
-curl -L -o /tmp/cart.zip https://roboshop-builds.s3.amazonaws.com/cart.zip   &>> $LOGFILE
+curl -o /tmp/cart.zip https://roboshop-builds.s3.amazonaws.com/cart.zip   &>> $LOGFILE
 
 VERIFY $? "downloading the application"
 
