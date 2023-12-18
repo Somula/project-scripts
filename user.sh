@@ -12,6 +12,7 @@ VERIFY(){
     if [ $1 -ne 0 ]
     then 
         echo -e "$2 is $R FAILED.$N"
+        exit 1
     else
         echo -e "$2 is $G SUCCESS.$N"
     fi
@@ -20,7 +21,7 @@ VERIFY(){
 if [ $ID -ne 0  ] &>> $LOGFILE
 then
     echo -e "$R Please logging as a root user.$N"
-    
+    exit 1
 else
     echo -e "$G Successfully logging as a root user.$N"
 fi
@@ -66,7 +67,7 @@ npm install &>> $LOGFILE
 
 VERIFY $? "Installing the packages"
 
-cp /home/centos/project-scripts/user.service /etc/systemd/system/user.service &>> $LOGFILE
+cp -r /home/centos/project-scripts/user.service /etc/systemd/system/user.service &>> $LOGFILE
 
 VERIFY $? "Creating the user service"
 
