@@ -6,7 +6,7 @@ G="\e[32m"
 N="\e[0m"
 
 TIMESTAMP=$(date +%F-%H-%M-%S)
-LOGFILE="/tmp/$0-$TIMESTAMP"
+LOGFILE="/tmp/$0-$TIMESTAMP.log"
 
 VERIFY(){
     if [ $1 -ne 0 ]
@@ -55,7 +55,7 @@ cd /app &>> $LOGFILE
 
 VERIFY $? "Opening the app directory"
 
-curl -L -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip &>> $LOGFILE
+curl -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip &>> $LOGFILE
 
 VERIFY $? "Downloading the file"
 
@@ -67,7 +67,7 @@ npm install &>> $LOGFILE
 
 VERIFY $? "Installing the packages"
 
-cp -r /home/centos/project-scripts/user.service /etc/systemd/system/user.service &>> $LOGFILE
+cp /home/centos/project-scripts/user.service /etc/systemd/system/user.service &>> $LOGFILE
 
 VERIFY $? "Creating the user service"
 
