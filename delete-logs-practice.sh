@@ -7,7 +7,8 @@ N="\e[0m"
 
 Source_Dir=$1
 
-if [ ! -d "$Source_Dir" ]; then
+if [ ! -d "$Source_Dir" ]
+then
     echo -e "$RERROR: Source directory doesn't exist.$N"
 fi
 
