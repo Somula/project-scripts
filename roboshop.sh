@@ -15,7 +15,7 @@ do
         INSTANCE_TYPE="t2.micro"
     fi
 
-    PrivateIpAddress=$(aws ec2 run-instances --image-id $AMI_ID --instance-type $INSTANCE_TYPE --security-group-ids $SG --tag-specifications 'ResourceType=instance,Tags=[{Key=name,Value=$i}]' --query Instances[0].PrivateIpAddress --output text)
+    PrivateIpAddress=$(aws ec2 run-instances --image-id $AMI_ID --instance-type $INSTANCE_TYPE --security-group-ids $SG --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=$i}]' --query Instances[0].PrivateIpAddress --output text)
     
     echo "$i PublicIpAddress is : $PrivateIpAddress"
 
