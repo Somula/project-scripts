@@ -7,7 +7,7 @@ DOMAIN_NAME="lingaaws.tech"
 zoneid="Z0790319IEVF09XXXVM1"
 for i in ${INSTANCES[@]}
 do
-    echo "Instanlling $i"
+    echo "Installing $i"
     if [ $i == "mongodb" ] || [ $i == "redis" ] || [ $i == "mysql" ]
     then
         INSTANCE_TYPE="t3.small"
