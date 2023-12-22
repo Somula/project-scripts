@@ -14,7 +14,7 @@ else
     INSTANCE_TYPE="t2.micro"
 fi
 
-PrivateIpAddress=$(aws ec2 run-instances --image-id $AMI_ID --instance-type $INSTANCE_TYPE --security-group-ids $SG --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$i}]" --query Instances[0].PrivateIpAddress --output text)
+PrivateIpAddress=$(aws ec2 run-instances --image-id $AMI_ID --instance-type $INSTANCE_TYPE --security-group-ids $SG --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$INSTANCES}]" --query Instances[0].PrivateIpAddress --output text)
 
 
 aws route53 change-resource-record-sets \
